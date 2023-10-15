@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+//Recursive Function
+vector<int> getRow(int index)
+{
+   vector<int> cur_row;
+
+   // 1st element of every row is 1
+   cur_row.push_back(1);
+
+   if (index == 0)
+   {
+     return cur_row;
+   }
+
+   vector<int> prev = getRow(index - 1);
+
+   for(int i = 1; i < prev.size(); i++)
+   {
+      int curr = prev[i - 1] + prev[i];
+      cur_row.push_back(curr);
+   }
+   cur_row.push_back(1);
+
+   return cur_row;
+}
+
+// Driver Code 
+int main()
+{
+   int n = 2;
+   vector<int> arr = getRow(n);
+
+   for(int i = 0; i < arr.size(); i++)
+   {
+      if (i == arr.size() - 1)
+          cout << arr[i];
+      else
+          cout << arr[i] << " ";
+   }
+   return 0;
+}
